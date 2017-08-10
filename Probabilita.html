@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Probabilita</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js"></script>
+    <script src="CoinToss.js"></script>
+</head>
+<body>
+<canvas id="myChart" width="400" height="400"></canvas>
+    <script>
+
+        var c = new CoinTossEpsilon(100);
+        var labels= c.indexes;
+        var proportion =c.proportions;
+
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Proportion of Heads',
+                    data: proportion,
+                    borderWidth: 1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)"
+                },
+                    {
+                        label:'Epsilon Success',
+                        data:c.epsilonSuccess
+                    }
+                ]
+            }
+        });
+
+    </script>
+</body>
+</html>
